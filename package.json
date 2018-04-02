@@ -1,0 +1,11 @@
+{
+  "name": "beaker-video-player",
+  "version": "1.0.0",
+  "description": "A video player module for beaker browser which understands knows to pick up subtitles, playlist etc for you",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "coderatlabs@gmail.com, suthar.ashok@outlook.com <Ashok>",
+  "license": "MIT"
+}
