@@ -7,5 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "coderatlabs@gmail.com, suthar.ashok@outlook.com <Ashok>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "concat-stream": "^1.6.2",
+    "from2": "^2.3.0",
+    "is-options": "^1.0.1",
+    "leven": "^2.1.0",
+    "path": "^0.12.7",
+    "srt-to-vtt": "^1.1.2"
+  }
 }
