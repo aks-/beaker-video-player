@@ -14,7 +14,7 @@ npm install beaker-video-player
 const videoPlayer = require('beaker-video-player')
 var url = 'dat://1047fec2e6c4bc9756811a768396912ce89af5f691b7fbbabad3d10/playlist.m3u'
 
-// classname is optional, you can also pass just url string like *videoPlayer(url)*
+// classname is optional, you can also pass just url string like -- videoPlayer(url)
 var { el, prev, next } = videoPlayer({ url, classname: 'foobar' })
 el.setAttribute('controls', true)
 el.setAttribute('autoplay', true)
@@ -23,7 +23,6 @@ el.setAttribute('width', 500)
 
 document.body.appendChild(el)
 
-document.getElement
 ```
 
 ## License
