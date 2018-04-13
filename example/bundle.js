@@ -1,15 +1,22 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const player  =  require('../')
-var url = 'dat://1047fec2e6c4bc9756811a768396912ce89af5f691b7f40e991440bbabad3d10/playlist.m3u'
-var o = player(url)
+const url = 'dat://1047fec2e6c4bc9756811a768396912ce89af5f691b7f40e991440bbabad3d10/playlist.m3u'
+const o = player(url)
 
-const { el } = o
+const { el, prev, next } = o
 el.setAttribute('controls', true)
 el.setAttribute('autoplay', true)
 el.setAttribute('height', 400)
 el.setAttribute('width', 400)
 document.body.appendChild(el)
 
+document.getElementById('next').addEventListener('click', () => {
+  next()
+})
+
+document.getElementById('prev').addEventListener('click', () => {
+  prev()
+})
 
 },{"../":3}],2:[function(require,module,exports){
 const path = require('path')
@@ -116,11 +123,6 @@ let el
 let playlist = []
 let currentindex = 0
 let archive
-let ret = {
-  el,
-  next,
-  prev
-}
 
 const getPotentialSubtitleMatches = (filename, allfiles) => {
   return allfiles.filter(filepath => {
@@ -181,7 +183,6 @@ const setuparchive = url => {
 }
 
 const clearVideo = () => {
-  const { el } = ret
   while (el.firstChild) {
     el.removeChild(el.firstChild);
   }
@@ -204,12 +205,12 @@ const streamPlaylist = async () => {
     await addSubtitleTracks(url)
   }
 
-  ret.next = () => {
+  next = () => {
     ++currentindex
     streamPlaylist()
   }
 
-  ret.prev = () => {
+  prev = () => {
     --currentindex
     streamPlaylist()
   }
@@ -253,9 +254,11 @@ const videoPlayer = opts => {
     await initialize()
   }, 0)
 
-  return Object.assign(ret, {
-    el
-  })
+  return {
+    el,
+    prev: () => prev(),
+    next: () => next(),
+  }
 }
 
 module.exports = videoPlayer
@@ -591,8 +594,8 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":51}],7:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../usr/local/lib/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../usr/local/lib/node_modules/watchify/node_modules/is-buffer/index.js":51}],7:[function(require,module,exports){
 (function (process,Buffer){
 var stream = require('readable-stream')
 var eos = require('end-of-stream')
@@ -1066,8 +1069,8 @@ function isOptions (opts) {
   return typeof opts === 'object' && opts && !Buffer.isBuffer(opts)
 }
 
-}).call(this,{"isBuffer":require("../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":51}],12:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../usr/local/lib/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../usr/local/lib/node_modules/watchify/node_modules/is-buffer/index.js":51}],12:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {

@@ -28,11 +28,6 @@ let el
 let playlist = []
 let currentindex = 0
 let archive
-let ret = {
-  el,
-  next,
-  prev
-}
 
 const getPotentialSubtitleMatches = (filename, allfiles) => {
   return allfiles.filter(filepath => {
@@ -93,7 +88,6 @@ const setuparchive = url => {
 }
 
 const clearVideo = () => {
-  const { el } = ret
   while (el.firstChild) {
     el.removeChild(el.firstChild);
   }
@@ -116,12 +110,12 @@ const streamPlaylist = async () => {
     await addSubtitleTracks(url)
   }
 
-  ret.next = () => {
+  next = () => {
     ++currentindex
     streamPlaylist()
   }
 
-  ret.prev = () => {
+  prev = () => {
     --currentindex
     streamPlaylist()
   }
@@ -165,9 +159,11 @@ const videoPlayer = opts => {
     await initialize()
   }, 0)
 
-  return Object.assign(ret, {
-    el
-  })
+  return {
+    el,
+    prev: () => prev(),
+    next: () => next(),
+  }
 }
 
 module.exports = videoPlayer
