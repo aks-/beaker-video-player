@@ -1,7 +1,7 @@
 {
   "name": "beaker-video-player",
   "version": "1.0.0",
-  "description": "A video player module for beaker browser which understands knows to pick up subtitles, playlist etc for you",
+  "description": "A video player module for beaker browser which understands how to pick up subtitles, playlist etc for you",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
